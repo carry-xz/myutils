@@ -167,6 +167,7 @@ def getAllPointInPolygon(polygon):
     return res_set.union(line_set)
 
 def recuriseAddPoint(cur_point,close_set,res_set,line_set):
+    # 递归方式添加多边形内部点
     p_list = getNeighbourPoint(cur_point)
     for point in p_list:
         if point in close_set:
@@ -178,6 +179,9 @@ def recuriseAddPoint(cur_point,close_set,res_set,line_set):
             recuriseAddPoint(point,close_set,res_set,line_set)
 
 def iouCalc(polygon1,polygon2):
+    # point:tuple:(int x,int y)
+    # polygon:List:[point1,point2,...]
+    # 计算多边形IOU
     pointset1 = getAllPointInPolygon(polygon1)
     pointset2 = getAllPointInPolygon(polygon2)
     inters = len(pointset1.intersection(pointset2))
