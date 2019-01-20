@@ -4,9 +4,8 @@
 import time
 import numpy as np 
 '''
-实现任意的两个多边形之间的IOU计算。
+实现任意的两个多边形之间的IOU计算。此处考虑中心点位置因素，不是yolo中的IOU
 取得多边形所有像素作为集合，然后求交集并集。
-考虑坐标位置，不是yolo中IOU的定义。
 '''
 def _linspace(start,end,delt=1):
     if start==end:
