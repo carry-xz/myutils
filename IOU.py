@@ -1,14 +1,15 @@
 # -*- coding: utf8 -*-
 # auther:carry-xz
 # 20190120
+
 import time
 import numpy as np 
 '''
-实现任意的两个多边形之间的IOU计算。此处考虑中心点位置因素，不是yolo中的IOU
+实现任意的两个多边形（单连通域）之间的IOU计算。此处考虑中心点位置因素，不是yolo中的IOU
 取得多边形所有像素作为集合，然后求交集并集。
 '''
 def _linspace(start,end,delt=1):
-    if start==end:
+    if start==end or delt==0:
         return []
     res = [start]
     if start<=end:
