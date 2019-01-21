@@ -75,8 +75,8 @@ def position2index(point1,xlimit,ylimit):
 
 def index2position(index,xlimit,ylimit):
     # 将索引转化为点坐标，索引计算方式y*行数+x
-    x = index//xlimit
-    y = index%xlimit
+    y = index//xlimit
+    x = index%xlimit
     return (int(x),int(y))
 
 def checkPointlineCrossLine(point1,LinePoint1,LinePoint2):
