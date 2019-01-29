@@ -109,7 +109,7 @@ def xml2txt(in_file,classes=[],out_dir='./'):
         bb = convert((w, h), b)
         out_file.write(str(cls_id) + " " + " ".join([str(a) for a in bb]) + '\n')
 
-def praperData4Yolo(walk_dir,tar_dir,classes=[]):
+def prepareData4Yolo(walk_dir,tar_dir,classes=[]):
     # 遍历目标文件，将图片、xml存入指定文件夹，将xml文件转化为txt文件，适用于yolo的训练文件格式。
     image_type = ('jpg','png')
     label_type = ('xml')
@@ -133,7 +133,7 @@ def praperData4Yolo(walk_dir,tar_dir,classes=[]):
                 xml2txt(xmlfilename,classes,out_dir=txtfildir)
 
     jpegFileWrite2Txt(tar_dir,tar_dir)
-    print('praper yolo data finish!')
+    print('prepare yolo data finish!')
 
 
 
@@ -142,5 +142,5 @@ if __name__=="__main__":
     imgdir = 'D:\\2018\\testdata'
     tardir = 'D:\\2018\\'
     classes = ['car', 'person','house']
-    praperData4Yolo(imgdir, tardir, classes)
+    prepareData4Yolo(imgdir, tardir, classes)
 
