@@ -7,14 +7,14 @@ import xml.etree.ElementTree as ET
 
 # 遍历图像文件，将文件中图像路径写入txt文件
 # 文件内必须有iamges和labels文件夹
-# iamges中存放图像，labels存放yolo需要的标签文件
+# iamges中存放图像，labels存放yolo需要的打标文件
 # python 3.5测试
 
 '''
 主要函数
-1.遍历文件夹找到指定的文件，复制到指定位置。
-2.将文件夹内所有xml文件转化为txt文件。
-3.遍历文件夹，将图片路径写入txt文档。
+1.遍历文件夹找到指定的文件，复制到指定位置 walkThroughAndCopy。
+2.将文件夹内所有xml文件转化为txt文件 xml2txt。
+3.遍历文件夹，将图片路径写入txt文档 jpegFileWrite2Txt。
 '''
 
 
