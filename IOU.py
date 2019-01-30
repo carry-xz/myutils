@@ -113,6 +113,8 @@ def checkPointInPolygon(point1,polygon):
         return True
     
 def getNeighbourPoint(point):
+    # point:tuple:(int x,int y)
+    # 获取相邻点：上、下、左、右
     x,y = point
     return {(x,y+1),(x,y-1),(x+1,y),(x-1,y)}
 
@@ -169,7 +171,7 @@ def getAllPointInPolygon(polygon):
     return res_set.union(line_set)
 
 def recuriseAddPoint(cur_point,close_set,res_set,line_set):
-    # 递归方式添加多边形内部点
+    # 递归方式添加多边形内部点，python有递归数限定，所以不适用
     p_list = getNeighbourPoint(cur_point)
     for point in p_list:
         if point in close_set:
