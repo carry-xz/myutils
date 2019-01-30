@@ -31,6 +31,8 @@ def _linspace(start,end,delt=1):
     return res
 
 def gradientCalc(point1,point2):
+    # point:tuple:(int x,int y)
+    # 计算斜率
     assert point1!=point2,'calc gradient should between different points'
     dx = point2[0]-point1[0]
     dy = point2[1]-point1[1]
