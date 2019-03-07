@@ -135,12 +135,48 @@ def prepareData4Yolo(walk_dir,tar_dir,classes=[]):
     jpegFileWrite2Txt(tar_dir,tar_dir)
     print('prepare yolo data finish!')
 
+def praperData4Yolo2(dir_img,dir_xml,tar_dir,classes=[]):
+    # copy image and xml to target dir,convert xml to txt,write image list txt file for training yolo
+    image_type = ('jpg','png')
+    label_type = ('xml')
+    out_txt_file = 'train_' + getTimeStr() + '.txt'
+    out_txt_file = os.path.join(tar_dir, out_txt_file)
+    if not os.path.exists(tar_dir):
+        os.makedirs(tar_dir)
+    if not os.path.exists(os.path.join(tar_dir,'images')):
+        os.makedirs(os.path.join(tar_dir,'images'))
+    tar_dir_img = os.path.join(tar_dir,'images')
+    if not os.path.exists(os.path.join(tar_dir,'anaotation')):
+        os.makedirs(os.path.join(tar_dir,'anaotation'))
+    tar_dir_xml = os.path.join(tar_dir,'anaotation')
+    if not os.path.exists(os.path.join(tar_dir,'labels')):
+        os.makedirs(os.path.join(tar_dir,'labels'))
+    tar_dir_label = os.path.join(tar_dir,'labels')
+    
+    walkThroughAndCopy(dir_xml,tar_dir_xml,file_type=label_type)
+    print(' copy xml finish!')
 
+    walkThroughAndCopy(dir_img, tar_dir_img, file_type=image_type)
+    print(' copy image finish!')
+
+    for root, dirs, files in os.walk(tar_dir_img, topdown=True):
+        for name in files:
+            imgfile = os.path.join(root,name)
+            xmlname = name.split('.')[0]+'.xml'
+            if os.path.exists(os.path.join(tar_dir_xml,xmlname)):
+                xmlfilename = os.path.join(tar_dir_xml, xmlname)
+                xml2txt(xmlfilename, classes, out_dir=tar_dir_label)
+                with open(out_txt_file, 'a') as f:
+                    if checkJpegFile(imgfile):
+                        f.write(imgfile)
+                        f.write('\n')
+    print('praper yolo data finish!')
 
 
 if __name__=="__main__":
-    imgdir = 'D:\\2018\\testdata'
-    tardir = 'D:\\2018\\'
-    classes = ['car', 'person','house']
-    prepareData4Yolo(imgdir, tardir, classes)
+    imgdir = '/JPEGImages'
+    xmldir = '/Annotations'
+    tardir = 'test'
+    classes = ['car', 'person']
+    praperData4Yolo2(imgdir,xmldir, tardir, classes)
 
