@@ -49,4 +49,4 @@ def video2image(video_folder,save_folder=None,frame_skip=4):
 
 if __name__ == "__main__":
     videoFolder = 'D:\\test'
-    video2image(videoFolder,frame_skip=50)
+    video2image(videoFolder)
